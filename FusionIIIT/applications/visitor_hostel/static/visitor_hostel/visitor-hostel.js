@@ -67,53 +67,6 @@ function request_booking (event) {
     nationality = $('input[name=country]').val()
 
 
-    loc=booking_from_time.indexOf(':');
-
-    if(loc == -1){
-        alertModal("Please check the arrival time.");
-            return;
-    }
-    hour = booking_from_time.substring(0,loc);
-    min = booking_from_time.substring(loc+1,booking_from_time.length);
-
-    h=parseInt(hour);
-    m=parseInt(min);
-
-    if(h < 0 || h >= 24){
-        alertModal("Please check the arrival time.");
-            return;
-
-    }
-    if(m < 0 || m >= 60){
-        alertModal("Please check the arrival time.");
-            return;
-
-    }
-
-    loc=booking_to_time.indexOf(':');
-
-    if(loc == -1){
-        alertModal("Please check the departure time.");
-            return;
-    }
-    hour = booking_to_time.substring(0,loc);
-    min = booking_to_time.substring(loc+1,booking_to_time.length);
-
-    h=parseInt(hour);
-    m=parseInt(min);
-
-    if(h < 0 || h >= 24){
-        alertModal("Please check the departure time.");
-            return;
-
-    }
-    if(m < 0 || m >= 60){
-        alertModal("Please check the departure time.");
-            return;
-
-    }
-
-    
     if (name == '') {
             alertModal("You didn't fill a visitor name! Please refill the form.");
             return;
@@ -254,7 +207,7 @@ function request_booking (event) {
             console.log(name + " " + phone + " " + email + " " + address);
             alertModal(" Congratulations! Your booking has been placed successfully\n Please wait for confirmation");
             setTimeout(function() {
-               location.reload();
+                window.location.replace('http://localhost:8000/visitorhostel');
             }, 1500);
         },
         error: function(data, err) {
@@ -442,7 +395,7 @@ function confirm_booking (id) {
         success: function(data) {
             alertModal("This booking has been confirmed");
             setTimeout(function() {
-                location.reload();
+                window.location.replace('http://localhost:8000/visitorhostel');
             }, 1500);
         },
         error: function(data, err) {
@@ -472,7 +425,7 @@ function reject_booking (id) {
         success: function(data) {
             alertModal("This booking has been rejected");
             setTimeout(function() {
-                location.reload();
+                window.location.replace('http://localhost:8000/visitorhostel');
             }, 1500);
         },
         error: function(data, err) {
@@ -517,7 +470,7 @@ function update_booking (id) {
         success: function(data) {
             alertModal("This booking has been updated.");
             setTimeout(function() {
-                location.reload();
+                window.location.replace('http://localhost:8000/visitorhostel');
             }, 1500);
         },
         error: function(data, err) {
@@ -543,7 +496,7 @@ function cancel_booking (id) {
         success: function(data) {
             alertModal("This booking has been cancelled.");
             setTimeout(function() {
-                location.reload();
+                window.location.replace('http://localhost:8000/visitorhostel');
             }, 1500);
         },
         error: function(data, err) {
@@ -613,7 +566,7 @@ function forward_booking (id) {
         success: function(data) {
             alertModal("This booking has been forwarded");
             setTimeout(function() {
-                location.reload();
+                window.location.replace('http://localhost:8000/visitorhostel');
             }, 1500);
 
         },
@@ -644,7 +597,7 @@ function cancel_active_booking (id, booking_from) {
         success: function(data) {
             alertModal("Your cancellation request has been placed.\n Please await confirmation.");
             setTimeout(function() {
-                location.reload();
+                window.location.replace('http://localhost:8000/visitorhostel');
             }, 1500);
         },
         error: function(data, err) {
@@ -749,7 +702,7 @@ function submit_visitor_details (id) {
         });
     }
     setTimeout(function() {
-        location.reload();
+        window.location.replace('http://localhost:8000/visitorhostel');
     }, 1500);
 }
 
@@ -768,7 +721,7 @@ function check_out (id , mess_bill , room_bill) {
         success: function(data) {
             alertModal("Visitor has Checked Out ");
             setTimeout(function() {
-                location.reload();
+                window.location.replace('http://localhost:8000/visitorhostel');
             }, 1500);
         },
         error: function(data, err) {
@@ -869,34 +822,12 @@ function next_action(event){
     console.log("next!!");
 
     
-    $("#booking-detail-data-tab").removeClass("active");
-    $("#booking-detail-action-tab").removeClass("active");
-    $("#visitor-detail-data-tab").addClass("active");
-    $("#visitor-detail-action-tab").addClass("active");
+    $("#booking-detail-data-tab").addClass("active");
+    $("#booking-detail-action-tab").addClass("active");
+    $("#visitor-detail-data-tab").removeClass("active");
+        $("#visitor-detail-action-tab").removeClass("active");
 }
 
-
-// function next_action_view(event){
-//     event.preventDefault();
-//     console.log("next!!");
-
-    
-//     $("#booking-detail-view-data-tab").addClass("active");
-//     $("#booking-detail-view-action-tab").addClass("active");
-//     $("#visitor-detail-view-data-tab").removeClass("active");
-//     $("#visitor-detail-view-action-tab").removeClass("active");
-// }
-
-function next_button_action_form(event){
-    event.preventDefault();
-    console.log("next!!@@@");
-
-    
-    $("#booking-detail-action-data-tab").addClass("active");
-    $("#booking-detail-action-form-tab").addClass("active");
-    $("#visitor-detail-action-data-tab").removeClass("active");
-    $("#visitor-detail-action-form-tab").removeClass("active");
-}
 
 
 
@@ -952,3 +883,4 @@ $('.info.circle.icon')
     inline: true
   })
 ;
+
